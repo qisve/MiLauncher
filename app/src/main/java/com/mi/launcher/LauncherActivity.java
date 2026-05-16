@@ -821,10 +821,8 @@ public class LauncherActivity extends Activity {
                 // Swipe down -> notification panel
                 if (dy > 200 && dt < 500 && Math.abs(ev.getX() - screenWidth / 2f) < screenWidth / 3f) {
                     try {
-                        StatusBarManager sbm = (StatusBarManager) getSystemService("statusbar");
-                        sbm.getClass().getMethod("expandNotificationsPanel").invoke(sbm);
                     } catch (Exception e) {
-                        // Fallback
+                        sendBroadcast(new Intent("android.intent.action.EXPAND_STATUS_BAR"));
                         sendBroadcast(new Intent("android.intent.action.CLOSE_SYSTEM_DIALOGS"));
                     }
                 }
