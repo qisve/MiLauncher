@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <!-- 时钟小部件 -->
+    <LinearLayout
+        android:id="@+id/widget_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="60dp"
+        android:background="@android:color/transparent">
+
+        <TextClock
+            android:id="@+id/clock_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="HH:mm"
+            android:format24Hour="HH:mm"
+            android:textSize="64sp"
+            android:textColor="#CCFFFFFF"
+            android:fontFamily="sans-serif-thin"
+            android:shadowColor="#88000000"
+            android:shadowDx="0"
+            android:shadowDy="2"
+            android:shadowRadius="6"/>
+
+        <TextClock
+            android:id="@+id/date_widget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="MM月dd日 EEEE"
+            android:format24Hour="MM月dd日 EEEE"
+            android:textSize="14sp"
+            android:textColor="#88FFFFFF"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+    <!-- 桌面页面（左右滑动） -->
+    <HorizontalScrollView
+        android:id="@+id/hscroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="104dp"
+        android:background="@android:color/transparent"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:fillViewport="true"
+        android:layout_marginTop="140dp">
+
+        <LinearLayout
+            android:id="@+id/pages_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@android:color/transparent"/>
+    </HorizontalScrollView>
+
+    <!-- 底部栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="@android:color/transparent">
+
+        <!-- 页面指示器 -->
+        <LinearLayout
+            android:id="@+id/page_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"/>
+
+        <!-- Dock 背景 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/dock_bg">
+
+            <LinearLayout
+                android:id="@+id/dock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="24dp"
+                android:background="@android:color/transparent"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- 模糊覆盖层（打开应用时） -->
+    <View
+        android:id="@+id/blur_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA0A0E14"
+        android:visibility="gone"
+        android:alpha="0"/>
+
+    <!-- 文件夹覆盖层 -->
+    <FrameLayout
+        android:id="@+id/folder_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone"
+        android:alpha="0"/>
+
+    <!-- 长按菜单覆盖层 -->
+    <FrameLayout
+        android:id="@+id/context_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        android:visibility="gone"
+        android:alpha="0"/>
+
+    <!-- 编辑模式覆盖层 -->
+    <FrameLayout
+        android:id="@+id/edit_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="gone"
+        android:alpha="0"/>
+</FrameLayout>

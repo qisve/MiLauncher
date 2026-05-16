@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MiLauncher</string>
+    <string name="new_folder">新建文件夹</string>
+    <string name="uninstall">卸载</string>
+    <string name="app_info">应用信息</string>
+    <string name="share">分享</string>
+    <string name="remove">移除</string>
+    <string name="move_to_first">移到首屏</string>
+    <string name="wallpaper">更换壁纸</string>
+    <string name="settings">桌面设置</string>
+    <string name="add_widget">添加小部件</string>
+    <string name="hide_apps">隐藏应用</string>
+    <string name="edit_home">编辑桌面</string>
+    <string name="done">完成</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="search_hint">搜索应用</string>
+    <string name="no_apps">没有找到应用</string>
+</resources>

@@ -1,0 +1,61 @@
+name: Build MiLauncher
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.3'
+      - name: Build Release APK
+        run: gradle assembleRelease
+      - name: Find APK
+        id: find_apk
+        run: |
+          find app/build/outputs/apk -name "*.apk" -type f
+          APK=$(find app/build/outputs/apk -name "*.apk" -type f | head -1)
+          echo "APK_PATH=$APK" >> $GITHUB_OUTPUT
+      - name: Build Magisk Module
+        run: |
+          mkdir -p module/system/product/priv-app/MiLauncher
+          cp "${{ steps.find_apk.outputs.APK_PATH }}" module/system/product/priv-app/MiLauncher/MiLauncher.apk
+          cd module
+          zip -r ../MiLauncher-magisk.zip .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MiLauncher
+          path: |
+            ${{ steps.find_apk.outputs.APK_PATH }}
+            MiLauncher-magisk.zip
+          retention-days: 30
+      - name: Get version
+        id: version
+        run: echo "VERSION=$(date +%Y%m%d-%H%M)" >> $GITHUB_OUTPUT
+      - name: Delete old release
+        uses: dev-drprasad/delete-tag-and-release@v1.1
+        with:
+          tag_name: latest
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          delete_release: true
+        continue-on-error: true
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: latest
+          name: Build ${{ steps.version.outputs.VERSION }}
+          body: MiLauncher v2.0 - ${{ steps.version.outputs.VERSION }}
+          files: |
+            ${{ steps.find_apk.outputs.APK_PATH }}
+            MiLauncher-magisk.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

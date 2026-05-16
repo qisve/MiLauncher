@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="bg_primary">#FF0A0E14</color>
+    <color name="bg_surface">#FF141921</color>
+    <color name="accent_blue">#FF3D8BFF</color>
+    <color name="text_primary">#FFEAEEF3</color>
+    <color name="text_secondary">#FF788494</color>
+    <color name="dock_bg">#44000000</color>
+    <color name="folder_bg">#CC141921</color>
+    <color name="edit_overlay">#88000000</color>
+    <color name="badge_red">#FFF43F5E</color>
+    <color name="icon_shadow">#AA000000</color>
+    <color name="dot_active">#CCFFFFFF</color>
+    <color name="dot_inactive">#33FFFFFF</color>
+</resources>
