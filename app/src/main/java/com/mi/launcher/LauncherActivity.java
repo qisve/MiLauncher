@@ -48,7 +48,7 @@ public class LauncherActivity extends Activity {
     private LinearLayout pagesContainer;
     private LinearLayout dockLayout;
     private LinearLayout pageIndicator;
-    private FrameLayout blurOverlay;
+    private View blurOverlay;
     private FrameLayout folderOverlay;
     private FrameLayout contextOverlay;
     private FrameLayout editOverlay;
