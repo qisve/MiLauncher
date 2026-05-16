@@ -625,7 +625,8 @@ public class LauncherActivity extends Activity {
             btn.setTextSize(14);
             btn.setPadding(32, 16, 32, 16);
             btn.setBackgroundResource(R.drawable.bg_edit_btn);
-            btn.setOnClickListener(v -> actions[labels.length - 1 == i ? 2 : i].run());
+            final int actionIdx = i;
+            btn.setOnClickListener(v -> actions[actionIdx].run());
             buttons.addView(btn);
         }
         editOverlay.addView(buttons);
